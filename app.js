@@ -1,6 +1,9 @@
-const express = require("express");
-const app = express();
+const express = require("express")
+const app = express()
 const phoneDetails = require("./data/phones.json")
+const cors = require('cors')
+
+app.use(cors());
 
 app.get("/phones", (req, res) => {
     res.json(phoneDetails)
@@ -12,7 +15,6 @@ app.get("/phones/:id", (req, res) => {
     try {
         const phone = phoneDetails.find((phone) => phone.id === phoneId)
         if(phone){
-            console.log("Success", phone);
             res.json(phone)
         } else {
             console.log("No data")
